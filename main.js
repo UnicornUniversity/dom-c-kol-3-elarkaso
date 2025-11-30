@@ -8,28 +8,28 @@
  */
 export function main(dtoIn) {
 
-    // pole 50 náhodných českých jmen mužů
+    // pole náhodných českých jmen mužů
     const maleNames = [
         "Jan", "Petr", "Josef", "Tomáš", "Martin", "Jiří", "Ondřej", "David", "Lukáš",
         "Jakub", "Michal", "Marek", "Filip", "Václav", "Daniel", "Matěj", "Radek",
         "Roman", "Karel"
     ];
 
-    // pole 50 náhodných českých příjmení mužů
+    // pole náhodných českých příjmení mužů
     const maleSurnames = [
         "Novák", "Svoboda", "Novotný", "Dvořák", "Černý", "Procházka", "Kučera", "Veselý",
         "Horák", "Němec", "Pokorný", "Fiala", "Sedláček", "Jelínek", "Růžička", "Malý",
         "Král", "Beneš", "Holub"
     ];
 
-    // pole 50 náhodných českých jmen žen
+    // pole náhodných českých jmen žen
     const femaleNames = [
         "Jana", "Marie", "Eva", "Anna", "Lucie", "Tereza", "Adéla", "Veronika", "Barbora",
         "Monika", "Zuzana", "Petra", "Kristýna", "Nikola", "Markéta", "Kamila", "Blanka",
         "Michaela", "Ludmila", "Alžběta", "Viktorie", "Nela", "Sára"
     ];
 
-    // pole 50 náhodných českých příjmení žen
+    // pole náhodných českých příjmení žen
     const femaleSurnames = [
         "Nováková", "Svobodová", "Dvořáková", "Černá", "Procházková",
         "Kučerová", "Veselá", "Horáková", "Němcová", "Pokorná",
@@ -62,7 +62,7 @@ export function main(dtoIn) {
             gender = "female"; 
         }
 
-        // výpočet náhodného věku dle rozmezí ze vstupních dat
+        // výpočet náhodného věku dle rozmezí ze vstupních dat a vyřazení duplicitních dat narození
         let birthdate;
         do {
           const age = minAge + Math.random() * (maxAge - minAge); // min <= age < max
@@ -91,7 +91,7 @@ export function main(dtoIn) {
             lastName = femaleSurnames[Math.floor(Math.random() * femaleSurnames.length)];
         }
 
-        // výběr náhodné pracovní zátěže z pole workloads
+        // výběr náhodné pracovní zátěže z pole možných zátěží
         const workloads = [10, 20, 30, 40];
         let workload = workloads[Math.floor(Math.random() * workloads.length)];
 
@@ -103,6 +103,6 @@ export function main(dtoIn) {
                         workload: workload
          });
     }
-
+    
   return dtoOut;
 }
