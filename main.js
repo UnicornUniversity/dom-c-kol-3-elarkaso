@@ -41,9 +41,13 @@ export function main(dtoIn) {
     const employees = [];
     const dtoOut = employees
 
+    // deklarace minimálního a maximálního věku ze vstupních dat
     const minAge = dtoIn.age.min;
     const maxAge = dtoIn.age.max;
     const YEAR_MS = 365.25 * 24 * 60 * 60 * 1000;
+
+    // sada pro kontrolu duplicitních dat narození
+    const usedBirthdates = new Set();
 
     // cyklus pro vytvoření počtu zaměstnanců dle count v dtoIn
     for (let x = 0; x < dtoIn.count; x++) {
