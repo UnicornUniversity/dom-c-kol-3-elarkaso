@@ -43,6 +43,7 @@ export function main(dtoIn) {
 
     const minAge = dtoIn.age.min;
     const maxAge = dtoIn.age.max;
+    const YEAR_MS = 365.25 * 24 * 60 * 60 * 1000;
 
     // cyklus pro vytvoření počtu zaměstnanců dle count v dtoIn
     for (let x = 0; x < dtoIn.count; x++) {
@@ -58,18 +59,15 @@ export function main(dtoIn) {
         }
 
         // výpočet náhodného věku dle rozmezí ze vstupních dat
-        const age_rand = minAge + Math.floor(Math.random() * (maxAge - minAge));
+        let birthdate;
+        do {
+          const age = minAge + Math.random() * (maxAge - minAge); // min <= age < max
+          const nowMs = Date.now();
+          const birthMs = nowMs - age * YEAR_MS;
+          birthdate = new Date(birthMs).toISOString();
+        } while (usedBirthdates.has(birthdate));
 
-        // deklarace a výpočet roku narození
-        const currentYear = new Date().getFullYear();
-        const birthYear = currentYear - age_rand;
-
-        // deklarace náhodného měsíce a dne v měsíci
-        const day_rand = Math.floor(Math.random() * 28) + 1;
-        const month_rand = Math.floor(Math.random() * 12);
-
-        // vytvoření data narození ve formátu ISO Date-Time - YYYY-MM-DDTHH:mm:ss.sssZ
-        const birthdate = new Date(birthYear, month_rand, day_rand).toISOString();
+        usedBirthdates.add(birthdate);
 
         // deklarace proměnných pro jméno a příjmení
         let firstName;
