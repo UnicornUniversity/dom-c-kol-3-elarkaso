@@ -85,8 +85,7 @@ export function main(dtoIn) {
         let month_rand = Math.floor(Math.random() * 12);
 
         // vytvoření data narození ve formátu ISO Date-Time - YYYY-MM-DDTHH:mm:ss.sssZ
-        let birthdate;
-        birthdate = new Date(birthYear, month_rand, day_rand).toISOString();
+        let birthdate = new Date(birthYear, month_rand, day_rand).toISOString();
 
         // deklarace proměnných pro jméno a příjmení
         let firstName;
@@ -118,7 +117,7 @@ export function main(dtoIn) {
                         workload: workload
          });
     }
-    
+
   return dtoOut;
 }
 
