@@ -12,51 +12,37 @@ export function main(dtoIn) {
     const maleNames = [
         "Jan", "Petr", "Josef", "Tomáš", "Martin", "Jiří", "Ondřej", "David", "Lukáš",
         "Jakub", "Michal", "Marek", "Filip", "Václav", "Daniel", "Matěj", "Radek",
-        "Roman", "Karel", "Jaroslav", "Aleš", "Adam", "Štěpán", "Dominik",
-        "Vojtěch", "Patrik", "Miloslav", "Rudolf", "Lubomír", "Bohumil",
-        "Stanislav", "Libor", "Richard", "Zdeněk", "Oldřich", "Antonín",
-        "Břetislav", "Eduard", "Emil", "Prokop", "Hynek", "Otakar",
-        "Vlastimil", "Igor", "Dalibor", "Erik", "Samuel", "Pavel", "Robin"
+        "Roman", "Karel"
     ];
 
     // pole 50 náhodných českých příjmení mužů
     const maleSurnames = [
         "Novák", "Svoboda", "Novotný", "Dvořák", "Černý", "Procházka", "Kučera", "Veselý",
         "Horák", "Němec", "Pokorný", "Fiala", "Sedláček", "Jelínek", "Růžička", "Malý",
-        "Král", "Beneš", "Holub", "Krejčí", "Šimek", "Urban", "Bartoš", "Kolář", "Vacek",
-        "Konečný", "Marek", "Hruška", "Štěpánek", "Kadlec", "Zeman", "Sýkora", "Blažek",
-        "Doležal", "Pavelka", "Tichý", "Čech", "Kříž", "Matoušek", "Vondráček", "Švec",
-        "Kovář", "Janda", "Holeček", "Vrána", "Bílý", "Štěrba", "Kudla", "Lukáš", "Duda"
+        "Král", "Beneš", "Holub"
     ];
 
     // pole 50 náhodných českých jmen žen
     const femaleNames = [
         "Jana", "Marie", "Eva", "Anna", "Lucie", "Tereza", "Adéla", "Veronika", "Barbora",
         "Monika", "Zuzana", "Petra", "Kristýna", "Nikola", "Markéta", "Kamila", "Blanka",
-        "Michaela", "Ludmila", "Alžběta", "Viktorie", "Nela", "Sára", "Eliška",
-        "Karolína", "Denisa", "Radka", "Gabriela", "Renata", "Šárka", "Kateřina", "Martina",
-        "Hana", "Lenka", "Simona", "Jitka", "Ivana", "Helena", "Dana", "Věra",
-        "Aneta", "Beata", "Magdaléna", "Sabina", "Stela", "Valerie", "Patricie", "Kristina",
-        "Lea", "Emilie"
+        "Michaela", "Ludmila", "Alžběta", "Viktorie", "Nela", "Sára"
     ];
 
     // pole 50 náhodných českých příjmení žen
     const femaleSurnames = [
         "Nováková", "Svobodová", "Dvořáková", "Černá", "Procházková",
         "Kučerová", "Veselá", "Horáková", "Němcová", "Pokorná",
-        "Pospíšilová", "Hájeková", "Králová", "Jelínková", "Růžičková",
-        "Benešová", "Fialová", "Sedláčková", "Kolářová", "Urbanová",
-        "Šimečková", "Malá", "Kadlecová", "Machová", "Bláhová",
-        "Marková", "Havlíčková", "Adamová", "Šťastná", "Ševčíková",
-        "Zimová", "Kovářová", "Tichá", "Bartošová", "Sýkorová",
-        "Vondráčková", "Holubová", "Pavlová", "Křížová", "Vlková",
-        "Hrušková", "Říhová", "Straková", "Vinklerová", "Gregorová",
-        "Doležalová", "Nejedlá", "Slavíková", "Pařízková"
+        "Pospíšilová", "Hájeková", "Králová", "Jelínková", "Růžičková"
+
     ];
 
     // deklarace výstupní proměnné
-    let employees = [];
-    let dtoOut = employees
+    const employees = [];
+    const dtoOut = employees
+
+    const minAge = dtoIn.age.min;
+    const maxAge = dtoIn.age.max;
 
     // cyklus pro vytvoření počtu zaměstnanců dle count v dtoIn
     for (let x = 0; x < dtoIn.count; x++) {
@@ -72,20 +58,18 @@ export function main(dtoIn) {
         }
 
         // výpočet náhodného věku dle rozmezí ze vstupních dat
-        let minAge = dtoIn.age.min;
-        let maxAge = dtoIn.age.max;
-        let age_rand = Math.floor(Math.random() * (maxAge - minAge + 1)) + minAge;
+        const age_rand = minAge + Math.floor(Math.random() * (maxAge - minAge));
 
         // deklarace a výpočet roku narození
-        let currentYear = new Date().getFullYear();
-        let birthYear = currentYear - age_rand;
+        const currentYear = new Date().getFullYear();
+        const birthYear = currentYear - age_rand;
 
         // deklarace náhodného měsíce a dne v měsíci
-        let day_rand = Math.floor(Math.random() * 28) + 1;
-        let month_rand = Math.floor(Math.random() * 12);
+        const day_rand = Math.floor(Math.random() * 28) + 1;
+        const month_rand = Math.floor(Math.random() * 12);
 
         // vytvoření data narození ve formátu ISO Date-Time - YYYY-MM-DDTHH:mm:ss.sssZ
-        let birthdate = new Date(birthYear, month_rand, day_rand).toISOString();
+        const birthdate = new Date(birthYear, month_rand, day_rand).toISOString();
 
         // deklarace proměnných pro jméno a příjmení
         let firstName;
@@ -120,4 +104,3 @@ export function main(dtoIn) {
 
   return dtoOut;
 }
-
